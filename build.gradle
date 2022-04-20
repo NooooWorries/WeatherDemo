@@ -10,6 +10,9 @@ buildscript {
         ktxVersion = '1.7.0'
         coroutinesVersion = "1.6.1"
 
+        // Jetpack components
+        fragmentVersion = '1.4.1'
+
         // Gradle
         gradleVersion = '7.0.4'
 
