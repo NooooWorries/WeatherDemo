@@ -1,8 +1,8 @@
 package com.czxbnb.weatherdemo.di
 
-import com.czxbnb.weatherdemo.data.WeatherDao
-import com.czxbnb.weatherdemo.data.WeatherDataSource
-import com.czxbnb.weatherdemo.data.WeatherRepository
+import com.czxbnb.weatherdemo.data.weather.WeatherLocalDataSource
+import com.czxbnb.weatherdemo.data.weather.WeatherRemoteDataSource
+import com.czxbnb.weatherdemo.repository.WeatherRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,9 +13,9 @@ import dagger.hilt.components.SingletonComponent
 class RepositoryModule {
     @Provides
     fun provideWeatherRepository(
-        weatherDataSource: WeatherDataSource,
-        weatherDao: WeatherDao
+        weatherLocalDataSource: WeatherLocalDataSource,
+        weatherRemoteDataSource: WeatherRemoteDataSource
     ): WeatherRepository {
-        return WeatherRepository(weatherDataSource, weatherDao)
+        return WeatherRepository(weatherLocalDataSource, weatherRemoteDataSource)
     }
 }

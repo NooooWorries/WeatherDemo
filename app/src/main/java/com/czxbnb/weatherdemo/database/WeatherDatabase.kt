@@ -1,4 +1,4 @@
-package com.czxbnb.weatherdemo.data
+package com.czxbnb.weatherdemo.database
 
 import android.content.Context
 import androidx.room.Database

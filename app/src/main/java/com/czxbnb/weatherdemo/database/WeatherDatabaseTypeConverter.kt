@@ -1,4 +1,4 @@
-package com.czxbnb.weatherdemo.data
+package com.czxbnb.weatherdemo.database
 
 import androidx.room.ProvidedTypeConverter
 import androidx.room.TypeConverter

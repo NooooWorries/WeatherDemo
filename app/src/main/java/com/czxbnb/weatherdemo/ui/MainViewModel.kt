@@ -1,10 +1,10 @@
-package com.czxbnb.weatherdemo.ui.main
+package com.czxbnb.weatherdemo.ui
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.czxbnb.weatherdemo.data.WeatherRepository
+import com.czxbnb.weatherdemo.repository.WeatherRepository
 import com.czxbnb.weatherdemo.model.WeatherResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

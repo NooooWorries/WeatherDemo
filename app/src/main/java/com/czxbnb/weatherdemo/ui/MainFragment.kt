@@ -1,4 +1,4 @@
-package com.czxbnb.weatherdemo.ui.main
+package com.czxbnb.weatherdemo.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

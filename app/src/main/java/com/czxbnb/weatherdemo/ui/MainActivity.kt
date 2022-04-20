@@ -1,8 +1,8 @@
-package com.czxbnb.weatherdemo
+package com.czxbnb.weatherdemo.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.czxbnb.weatherdemo.ui.main.MainFragment
+import com.czxbnb.weatherdemo.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

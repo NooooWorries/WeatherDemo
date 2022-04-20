@@ -1,4 +1,4 @@
-package com.czxbnb.weatherdemo.data
+package com.czxbnb.weatherdemo.database
 
 import androidx.room.Dao
 import androidx.room.Insert
@@ -10,6 +10,9 @@ import kotlinx.coroutines.flow.Flow
 interface WeatherDao {
     @Query("SELECT * FROM weather_response")
     fun getWeatherList(): List<WeatherResponse>
+
+    @Query("SELECT * FROM weather_response where id = :queryId")
+    fun getWeatherById(queryId: String): WeatherResponse
 
     @Insert
     suspend fun insertWeather(weatherResponse: WeatherResponse)

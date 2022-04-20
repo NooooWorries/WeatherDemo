@@ -1,8 +1,8 @@
 package com.czxbnb.weatherdemo.di
 
 import android.content.Context
-import com.czxbnb.weatherdemo.data.WeatherDao
-import com.czxbnb.weatherdemo.data.WeatherDatabase
+import com.czxbnb.weatherdemo.database.WeatherDao
+import com.czxbnb.weatherdemo.database.WeatherDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
