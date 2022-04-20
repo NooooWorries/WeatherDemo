@@ -4,6 +4,9 @@ import androidx.room.ProvidedTypeConverter
 import androidx.room.TypeConverter
 import com.czxbnb.weatherdemo.model.*
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import java.lang.reflect.Type
+
 
 @ProvidedTypeConverter
 class WeatherDatabaseTypeConverter(private val gson: Gson) {
@@ -33,11 +36,14 @@ class WeatherDatabaseTypeConverter(private val gson: Gson) {
     fun stringToSys(sysString: String?): Sys? = gson.fromJson(sysString, Sys::class.java)
 
     @TypeConverter
-    fun weatherToString(weather: Weather?): String? = gson.toJson(weather)
+    fun weatherListToString(weatherList: List<Weather>?): String? = gson.toJson(weatherList)
 
     @TypeConverter
-    fun stringToWeather(weatherString: String?): Weather? =
-        gson.fromJson(weatherString, Weather::class.java)
+    fun stringToWeatherList(weatherListString: String?): List<Weather>? {
+        val listType: Type = object : TypeToken<ArrayList<String?>?>() {}.type
+        return gson.fromJson(weatherListString, listType)
+    }
+
 
     @TypeConverter
     fun windToString(wind: Wind?): String? = gson.toJson(wind)

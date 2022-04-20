@@ -12,5 +12,5 @@ interface WeatherDao {
     fun getWeatherList(): Flow<List<WeatherResponse>>
 
     @Insert
-    suspend fun insertWeather(weatherResponse: WeatherResponse): Int
+    suspend fun insertWeather(weatherResponse: WeatherResponse)
 }

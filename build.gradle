@@ -7,7 +7,7 @@ buildscript {
 
         // Kotlin
         kotlinVersion = '1.6.10'
-        ktxVersion = '1.0.2'
+        ktxVersion = '1.7.0'
         coroutinesVersion = "1.6.1"
 
         // Gradle
@@ -22,6 +22,9 @@ buildscript {
 
         // Gson
         gsonVersion = '2.9.0'
+
+        // Hilt
+        hiltVersion = '2.38.1'
     }
 
     repositories {
@@ -32,6 +35,7 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:$gradleVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$hiltVersion"
     }
 }
 
