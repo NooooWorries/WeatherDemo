@@ -10,7 +10,7 @@ buildscript {
         ktxVersion = '1.7.0'
         coroutinesVersion = "1.6.1"
 
-        // Jetpack components
+        // Jetpack Components
         fragmentVersion = '1.4.1'
 
         // Gradle
@@ -28,6 +28,15 @@ buildscript {
 
         // Hilt
         hiltVersion = '2.38.1'
+
+        // Material Design
+        materialVersion = '1.5.0'
+
+        // PermissionX
+        permissionXVersion = '1.6.2'
+
+        // Google Play Services
+        playServicesVersion = '19.0.1'
     }
 
     repositories {

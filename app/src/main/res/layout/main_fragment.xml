@@ -5,16 +5,167 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusable="true"
+    android:paddingStart="10dp"
+    android:paddingTop="20dp"
+    android:paddingEnd="10dp"
+    android:paddingBottom="20dp"
     tools:context=".ui.MainFragment">
 
-    <TextView
-        android:id="@+id/message"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="MainFragment"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input_query"
+        android:layout_width="0dp"
+        android:layout_height="68dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toStartOf="@id/button_locate"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_text_query"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/edit_text_hint"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_locate"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="5dp"
+        android:background="@android:drawable/ic_menu_mylocation"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/text_input_query"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_weather"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/text_input_query">
+
+
+        <TextView
+            android:id="@+id/text_view_place_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/weather_font_black"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Sydney" />
+
+
+        <ImageView
+            android:id="@+id/image_view_icon"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_view_place_name"
+            tools:ignore="ContentDescription"
+            tools:srcCompat="@drawable/ic_weather_sunny" />
+
+        <TextView
+            android:id="@+id/text_view_weather"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/weather_font_black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_view_icon"
+            tools:text="Sunny" />
+
+        <TextView
+            android:id="@+id/text_view_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/weather_font_grey"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="2022/04/21 21:41" />
+
+        <TextView
+            android:id="@+id/text_view_temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/weather_font_black"
+            android:textSize="42sp"
+            app:layout_constraintEnd_toStartOf="@id/text_view_celsius"
+            app:layout_constraintTop_toBottomOf="@id/text_view_time"
+            tools:text="15.0" />
+
+        <TextView
+            android:id="@+id/text_view_celsius"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/weather_celsius"
+            android:textColor="@color/weather_font_black"
+            android:textSize="24sp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_view_time"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/text_view_max"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/weather_font_black"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@id/text_view_max_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="@string/weather_degree_format_i" />
+
+        <TextView
+            android:id="@+id/text_view_max_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/weather_max"
+            android:textColor="@color/weather_font_grey"
+            android:textSize="14sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/text_view_weather"
+            app:layout_constraintEnd_toEndOf="@+id/text_view_max"
+            app:layout_constraintStart_toStartOf="@+id/text_view_max"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/text_view_min"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="19dp"
+            android:textColor="@color/weather_font_blue"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@id/text_view_min_title"
+            app:layout_constraintEnd_toStartOf="@id/text_view_max"
+            tools:text="@string/weather_degree_format_i" />
+
+        <TextView
+            android:id="@+id/text_view_min_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/weather_min"
+            android:textColor="@color/weather_font_grey"
+            android:textSize="14sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/text_view_weather"
+            app:layout_constraintEnd_toEndOf="@+id/text_view_min"
+            app:layout_constraintStart_toStartOf="@+id/text_view_min"
+            tools:visibility="visible" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/text_view_loading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_input_query" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

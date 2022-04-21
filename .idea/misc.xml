@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/edit_text_bg.xml" value="0.392" />
+        <entry key="app/src/main/res/drawable/ic_weather_cloud_wind.xml" value="0.378" />
+        <entry key="app/src/main/res/layout/item_weather_current.xml" value="0.3776041666666667" />
+        <entry key="app/src/main/res/layout/main_activity.xml" value="0.3776041666666667" />
         <entry key="app/src/main/res/layout/main_fragment.xml" value="0.38125" />
       </map>
     </option>
@@ -12,5 +16,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.38125" />
+      </ProjectState>
+    </option>
   </component>
 </project>

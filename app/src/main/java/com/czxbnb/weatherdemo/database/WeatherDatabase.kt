@@ -8,7 +8,7 @@ import androidx.room.TypeConverters
 import com.czxbnb.weatherdemo.model.WeatherResponse
 import com.google.gson.Gson
 
-@Database(entities = [WeatherResponse::class], version = 1)
+@Database(entities = [WeatherResponse::class], version = 2)
 @TypeConverters(WeatherDatabaseTypeConverter::class)
 abstract class WeatherDatabase : RoomDatabase() {
     companion object {
@@ -25,6 +25,7 @@ abstract class WeatherDatabase : RoomDatabase() {
         private fun buildDatabase(context: Context) =
             Room.databaseBuilder(context, WeatherDatabase::class.java, WEATHER_DATABASE_NAME)
                 .addTypeConverter(WeatherDatabaseTypeConverter(Gson()))
+                .fallbackToDestructiveMigration()
                 .build()
     }
 

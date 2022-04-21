@@ -1,9 +1,10 @@
 package com.czxbnb.weatherdemo.repository
 
-import com.czxbnb.weatherdemo.data.weather.WeatherLocalDataSource
-import com.czxbnb.weatherdemo.data.weather.WeatherRemoteDataSource
+import com.czxbnb.weatherdemo.data.WeatherLocalDataSource
+import com.czxbnb.weatherdemo.data.WeatherRemoteDataSource
 import com.czxbnb.weatherdemo.model.WeatherResponse
 import com.czxbnb.weatherdemo.network.Result
+import java.lang.Exception
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -22,6 +23,20 @@ class WeatherRepository @Inject constructor(
                 throw remoteTask.exception
             }
             else -> {
+                null
+            }
+        }
+    }
+
+    suspend fun getWeatherByCoordinate(latitude: Double, longitude: Double): WeatherResponse? {
+        return when (val remoteTask = weatherRemoteDataSource.getWeatherByCoordinate(latitude, longitude)) {
+            is Result.Success -> {
+                weatherLocalDataSource.insertWeather(remoteTask.data)
+                remoteTask.data
+            }
+            is Result.Error -> {
+                throw remoteTask.exception
+            } else -> {
                 null
             }
         }

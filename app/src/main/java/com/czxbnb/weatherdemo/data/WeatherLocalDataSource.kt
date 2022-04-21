@@ -1,4 +1,4 @@
-package com.czxbnb.weatherdemo.data.weather
+package com.czxbnb.weatherdemo.data
 
 import com.czxbnb.weatherdemo.database.WeatherDao
 import com.czxbnb.weatherdemo.model.WeatherResponse

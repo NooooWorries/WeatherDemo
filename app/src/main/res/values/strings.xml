@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Weather Demo</string>
+    <string name="edit_text_hint">Enter a place…</string>
+    <string name="loading">Loading…</string>
+    <string name="error">Unable to load data, please try again.</string>
+
+    <string name="weather_celsius">℃</string>
+    <string name="weather_degree_format_i">%1$dº</string>
+    <string name="weather_max">Max</string>
+    <string name="weather_min">Min</string>
 </resources>

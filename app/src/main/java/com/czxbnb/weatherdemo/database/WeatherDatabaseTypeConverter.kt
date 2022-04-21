@@ -44,7 +44,6 @@ class WeatherDatabaseTypeConverter(private val gson: Gson) {
         return gson.fromJson(weatherListString, listType)
     }
 
-
     @TypeConverter
     fun windToString(wind: Wind?): String? = gson.toJson(wind)
 
