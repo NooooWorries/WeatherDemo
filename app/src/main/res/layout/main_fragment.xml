@@ -45,6 +45,7 @@
         android:id="@+id/layout_weather"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@id/text_input_query">
 
 
@@ -107,10 +108,8 @@
             android:text="@string/weather_celsius"
             android:textColor="@color/weather_font_black"
             android:textSize="24sp"
-            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_view_time"
-            tools:visibility="visible" />
+            app:layout_constraintTop_toBottomOf="@id/text_view_time" />
 
         <TextView
             android:id="@+id/text_view_max"
@@ -129,11 +128,9 @@
             android:text="@string/weather_max"
             android:textColor="@color/weather_font_grey"
             android:textSize="14sp"
-            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/text_view_weather"
             app:layout_constraintEnd_toEndOf="@+id/text_view_max"
-            app:layout_constraintStart_toStartOf="@+id/text_view_max"
-            tools:visibility="visible" />
+            app:layout_constraintStart_toStartOf="@+id/text_view_max" />
 
         <TextView
             android:id="@+id/text_view_min"
@@ -153,11 +150,9 @@
             android:text="@string/weather_min"
             android:textColor="@color/weather_font_grey"
             android:textSize="14sp"
-            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/text_view_weather"
             app:layout_constraintEnd_toEndOf="@+id/text_view_min"
-            app:layout_constraintStart_toStartOf="@+id/text_view_min"
-            tools:visibility="visible" />
+            app:layout_constraintStart_toStartOf="@+id/text_view_min" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView

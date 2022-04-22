@@ -2,8 +2,6 @@ package com.czxbnb.weatherdemo.ui
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.content.Context
-import android.location.LocationManager
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -38,9 +36,6 @@ class MainFragment : Fragment() {
     }
 
     private val viewModel: MainViewModel by viewModels()
-    private val locationManager: LocationManager? by lazy {
-        activity?.getSystemService(Context.LOCATION_SERVICE) as LocationManager
-    }
 
     private lateinit var placeNameTextView: TextView
     private lateinit var iconImageView: ImageView
@@ -76,7 +71,8 @@ class MainFragment : Fragment() {
             ) {
                 hideKeyboard(v)
                 viewModel.getWeatherByQuery(v.text.toString())
-                showLoading(context?.getString(R.string.loading))
+                showMessage(context?.getString(R.string.loading))
+                disableSearch()
             }
             true
         }
@@ -91,8 +87,9 @@ class MainFragment : Fragment() {
                 )
                 .request { allGranted, _, _ ->
                     if (allGranted) {
+                        disableSearch()
                         // If user granted, get precise location
-                        showLoading(context?.getString(R.string.loading))
+                        showMessage(context?.getString(R.string.loading))
                         lifecycleScope.launch {
                             // Asynchronously obtaining precise location
                             val location =
@@ -105,24 +102,30 @@ class MainFragment : Fragment() {
                                 )
                             } else {
                                 // If location service returns null, show error message
-                                showLoading("Unable to get your location")
+                                showMessage("Unable to get your location")
+                                enableSearch()
                             }
                         }
                     } else {
                         // If user denied, show error message
                         // Another request will be made if user click locate button again
-                        showLoading("Permission Denied")
+                        showMessage("Permission Denied")
+                        enableSearch()
                     }
                 }
         }
 
         viewModel.weatherResponseLiveData.observe(viewLifecycleOwner) {
             it?.run { loadDataIntoView(this) }
-            hideLoading()
+            hideMessage()
+            locateButton.isEnabled = true
+            enableSearch()
         }
 
         viewModel.errorMessageLiveData.observe(viewLifecycleOwner) {
-            showLoading(context?.getString(R.string.error))
+            showMessage(context?.getString(R.string.error))
+            locateButton.isEnabled = true
+            enableSearch()
         }
     }
 
@@ -157,14 +160,24 @@ class MainFragment : Fragment() {
         maxTextView.text = weatherResponse.main?.temp_max?.toString()
     }
 
-    private fun showLoading(message: String?) {
+    private fun showMessage(message: String?) {
         loadingTextView.visibility = View.VISIBLE
         weatherLayout.visibility = View.GONE
         message?.let { loadingTextView.text = it }
     }
 
-    private fun hideLoading() {
+    private fun hideMessage() {
         loadingTextView.visibility = View.GONE
         weatherLayout.visibility = View.VISIBLE
+    }
+
+    private fun enableSearch() {
+        locateButton.isEnabled = true
+        queryEditText.isEnabled = true
+    }
+
+    private fun disableSearch() {
+        locateButton.isEnabled = false
+        queryEditText.isEnabled = false
     }
 }
