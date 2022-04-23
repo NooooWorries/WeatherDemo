@@ -8,4 +8,6 @@ class WeatherLocalDataSource @Inject constructor(private val dao: WeatherDao) {
     suspend fun insertWeather(weatherResponse: WeatherResponse) {
         dao.insertWeather(weatherResponse)
     }
+
+    suspend fun getWeatherById(id: Int): WeatherResponse = dao.getWeatherById(id)
 }

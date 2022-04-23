@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
-import com.czxbnb.weatherdemo.model.WeatherResponse
+import com.czxbnb.weatherdemo.util.assertWeatherResponseEqual
 import com.czxbnb.weatherdemo.util.getSampleWeatherResponse
 import com.google.gson.Gson
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -41,21 +41,6 @@ class WeatherDaoTest {
 
     @After
     fun closeDb() = database.close()
-
-    private fun assertWeatherResponseEqual(original: WeatherResponse, target: WeatherResponse) {
-        MatcherAssert.assertThat(original.id, `is`(target.id))
-        MatcherAssert.assertThat(original.base, `is`(target.base))
-        MatcherAssert.assertThat(original.clouds, `is`(target.clouds))
-        MatcherAssert.assertThat(original.cod, `is`(target.cod))
-        MatcherAssert.assertThat(original.dt, `is`(target.dt))
-        MatcherAssert.assertThat(original.main, `is`(target.main))
-        MatcherAssert.assertThat(original.name, `is`(target.name))
-        MatcherAssert.assertThat(original.sys, `is`(target.sys))
-        MatcherAssert.assertThat(original.timezone, `is`(target.timezone))
-        MatcherAssert.assertThat(original.visibility, `is`(target.visibility))
-        MatcherAssert.assertThat(original.weather, `is`(target.weather))
-        MatcherAssert.assertThat(original.wind, `is`(target.wind))
-    }
 
     @Test
     fun insertWeatherResponseAndGetWeatherResponseById() = runTest {
