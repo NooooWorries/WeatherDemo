@@ -1,17 +1,15 @@
 package com.czxbnb.weatherdemo.repository
 
-import com.czxbnb.weatherdemo.data.WeatherLocalDataSource
-import com.czxbnb.weatherdemo.data.WeatherRemoteDataSource
+import com.czxbnb.weatherdemo.data.WeatherDataSource
 import com.czxbnb.weatherdemo.model.WeatherResponse
 import com.czxbnb.weatherdemo.network.Result
-import java.lang.Exception
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class WeatherRepository @Inject constructor(
-    private val weatherLocalDataSource: WeatherLocalDataSource,
-    private val weatherRemoteDataSource: WeatherRemoteDataSource
+    private val weatherLocalDataSource: WeatherDataSource,
+    private val weatherRemoteDataSource: WeatherDataSource
 ) {
     suspend fun getWeatherByQuery(queryMessage: String): WeatherResponse? {
         return when (val remoteTask = weatherRemoteDataSource.getWeatherByQuery(queryMessage)) {

@@ -4,10 +4,10 @@ import com.czxbnb.weatherdemo.database.WeatherDao
 import com.czxbnb.weatherdemo.model.WeatherResponse
 import javax.inject.Inject
 
-class WeatherLocalDataSource @Inject constructor(private val dao: WeatherDao) {
-    suspend fun insertWeather(weatherResponse: WeatherResponse) {
+class WeatherLocalDataSource @Inject constructor(private val dao: WeatherDao) : WeatherDataSource {
+    override suspend fun insertWeather(weatherResponse: WeatherResponse) {
         dao.insertWeather(weatherResponse)
     }
 
-    suspend fun getWeatherById(id: Int): WeatherResponse = dao.getWeatherById(id)
+    override suspend fun getWeatherById(id: Int?): WeatherResponse? = dao.getWeatherById(id)
 }

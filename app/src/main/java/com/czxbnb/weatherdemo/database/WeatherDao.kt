@@ -13,7 +13,7 @@ interface WeatherDao {
     suspend fun getWeatherList(): List<WeatherResponse>
 
     @Query("SELECT * FROM weather_response where id = :id")
-    suspend fun getWeatherById(id: Int): WeatherResponse
+    suspend fun getWeatherById(id: Int?): WeatherResponse?
 
     @Insert
     suspend fun insertWeather(weatherResponse: WeatherResponse)
