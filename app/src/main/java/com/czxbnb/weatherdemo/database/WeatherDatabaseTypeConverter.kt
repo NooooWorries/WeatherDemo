@@ -40,7 +40,7 @@ class WeatherDatabaseTypeConverter(private val gson: Gson) {
 
     @TypeConverter
     fun stringToWeatherList(weatherListString: String?): List<Weather>? {
-        val listType: Type = object : TypeToken<ArrayList<String?>?>() {}.type
+        val listType: Type = object : TypeToken<List<Weather?>?>() {}.type
         return gson.fromJson(weatherListString, listType)
     }
 
