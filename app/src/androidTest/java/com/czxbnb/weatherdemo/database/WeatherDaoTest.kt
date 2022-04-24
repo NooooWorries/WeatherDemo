@@ -43,7 +43,7 @@ class WeatherDaoTest {
     fun closeDb() = database.close()
 
     @Test
-    fun insertWeatherResponseAndGetWeatherResponseById() = runTest {
+    fun testInsertWeatherResponseAndGetWeatherResponseById() = runTest {
         // Given - Insert a task
         val weatherResponse = applicationContext.getSampleWeatherResponse(gson)
         weatherDao.insertWeather(weatherResponse)
@@ -56,7 +56,7 @@ class WeatherDaoTest {
     }
 
     @Test
-    fun insertWeatherResponseAndGetWeatherResponseList() = runTest {
+    fun testInsertWeatherResponseAndGetWeatherResponseList() = runTest {
         // Given - Insert a task
         val weatherResponse = applicationContext.getSampleWeatherResponse(gson)
         weatherDao.insertWeather(weatherResponse)
@@ -70,7 +70,7 @@ class WeatherDaoTest {
     }
 
     @Test
-    fun insertWeatherResponseAndDeleteWeatherResponse() = runTest {
+    fun testInsertWeatherResponseAndDeleteWeatherResponse() = runTest {
         // Given - Insert a task
         val weatherResponse = applicationContext.getSampleWeatherResponse(gson)
         weatherDao.insertWeather(weatherResponse)

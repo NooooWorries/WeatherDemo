@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.czxbnb.weatherdemo.repository.WeatherRepository
 import com.czxbnb.weatherdemo.model.WeatherResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.Exception
 import javax.inject.Inject
@@ -22,7 +23,7 @@ class MainViewModel @Inject constructor(
     val errorMessageLiveData: LiveData<String?> = _errorMessageLiveData
 
     fun getWeatherByQuery(queryString: String) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             try {
                 val response = repository.getWeatherByQuery(queryString)
                 _weatherResponseLiveData.postValue(response)
@@ -33,7 +34,7 @@ class MainViewModel @Inject constructor(
     }
 
     fun getWeatherByCoordinate(latitude: Double, longitude: Double) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             try {
                 val response = repository.getWeatherByCoordinate(latitude, longitude)
                 _weatherResponseLiveData.postValue(response)
