@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface  WeatherService {
+interface WeatherService {
 
     companion object {
         fun create(): WeatherService {
