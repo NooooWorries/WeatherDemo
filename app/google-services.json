@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1369508310",
+    "project_id": "weather-demo-31466",
+    "storage_bucket": "weather-demo-31466.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1369508310:android:8ce7929c9b4f094871fc77",
+        "android_client_info": {
+          "package_name": "com.czxbnb.weatherdemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1369508310-un6uir4eji8secccc9luo6jm9ahnirej.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQbzfevok_RhHXS2DuWW1CdpeIBMNt-Ow"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1369508310-un6uir4eji8secccc9luo6jm9ahnirej.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

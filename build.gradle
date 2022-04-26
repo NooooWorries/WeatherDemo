@@ -48,6 +48,10 @@ buildscript {
 
         // Google Play Services
         playServicesVersion = '19.0.1'
+        googleServicesVersion = "4.3.10"
+
+        // Firebase
+        crashlyticsGradleVersion = '2.8.1'
     }
 
     repositories {
@@ -59,6 +63,8 @@ buildscript {
         classpath "com.android.tools.build:gradle:$gradleVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hiltVersion"
+        classpath "com.google.gms:google-services:$googleServicesVersion"
+        classpath "com.google.firebase:firebase-crashlytics-gradle:$crashlyticsGradleVersion"
     }
 }
 
