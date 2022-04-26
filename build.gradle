@@ -2,7 +2,7 @@ buildscript {
     ext {
         // Sdk and tools
         compileSdkVersion = 31
-        minSdkVersion = 21
+        minSdkVersion = 24
         targetSdkVersion = 31
 
         // Kotlin
@@ -42,9 +42,6 @@ buildscript {
 
         // Material Design
         materialVersion = '1.5.0'
-
-        // PermissionX
-        permissionXVersion = '1.6.2'
 
         // Google Play Services
         playServicesVersion = '19.0.1'

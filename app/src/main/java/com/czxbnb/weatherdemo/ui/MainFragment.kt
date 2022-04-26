@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -22,7 +23,6 @@ import com.czxbnb.weatherdemo.util.awaitCurrentLocation
 import com.czxbnb.weatherdemo.util.hideKeyboard
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
-import com.permissionx.guolindev.PermissionX
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -78,41 +78,27 @@ class MainFragment : Fragment() {
         }
 
         // Add event for locate button
-        locateButton.setOnClickListener {
-            // Use permissionX to request for fine location permission
-            PermissionX.init(activity)
-                .permissions(
-                    Manifest.permission.ACCESS_COARSE_LOCATION,
-                    Manifest.permission.ACCESS_FINE_LOCATION
-                )
-                .request { allGranted, _, _ ->
-                    if (allGranted) {
-                        disableSearch()
-                        // If user granted, get precise location
-                        showMessage(context?.getString(R.string.loading))
-                        lifecycleScope.launch {
-                            // Asynchronously obtaining precise location
-                            val location =
-                                LocationServices.getFusedLocationProviderClient(requireContext())
-                                    .awaitCurrentLocation(LocationRequest.PRIORITY_HIGH_ACCURACY)
-                            if (location?.latitude != null) {
-                                viewModel.getWeatherByCoordinate(
-                                    location.latitude,
-                                    location.longitude
-                                )
-                            } else {
-                                // If location service returns null, show error message
-                                showMessage("Unable to get your location")
-                                enableSearch()
-                            }
-                        }
-                    } else {
-                        // If user denied, show error message
-                        // Another request will be made if user click locate button again
-                        showMessage("Permission Denied")
-                        enableSearch()
-                    }
+        val locationPermissionRequest = registerForActivityResult(
+            ActivityResultContracts.RequestMultiplePermissions()
+        ) { permissions ->
+            when {
+                permissions.getOrDefault(Manifest.permission.ACCESS_FINE_LOCATION, false) -> {
+                    requestLocation()
                 }
+                permissions.getOrDefault(Manifest.permission.ACCESS_COARSE_LOCATION, false) -> {
+                    requestLocation()
+                }
+                else -> {
+                    showMessage("Unable to get your location")
+                    enableSearch()
+                }
+            }
+        }
+
+        locateButton.setOnClickListener {
+            locationPermissionRequest.launch(arrayOf(
+                Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION))
         }
 
         viewModel.weatherResponseLiveData.observe(viewLifecycleOwner) {
@@ -126,6 +112,28 @@ class MainFragment : Fragment() {
             showMessage(context?.getString(R.string.error))
             locateButton.isEnabled = true
             enableSearch()
+        }
+    }
+
+    private fun requestLocation() {
+        disableSearch()
+        // If user granted, get precise location
+        showMessage(context?.getString(R.string.loading))
+        lifecycleScope.launch {
+            // Asynchronously obtaining precise location
+            val location =
+                LocationServices.getFusedLocationProviderClient(requireContext())
+                    .awaitCurrentLocation(LocationRequest.PRIORITY_HIGH_ACCURACY)
+            if (location?.latitude != null) {
+                viewModel.getWeatherByCoordinate(
+                    location.latitude,
+                    location.longitude
+                )
+            } else {
+                // If location service returns null, show error message
+                showMessage("Unable to get your location")
+                enableSearch()
+            }
         }
     }
 

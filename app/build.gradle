@@ -97,9 +97,6 @@ dependencies {
     // Material Design
     implementation "com.google.android.material:material:$rootProject.materialVersion"
 
-    // PermissionX
-    implementation "com.guolindev.permissionx:permissionx:$rootProject.permissionXVersion"
-
     // Google Play Services
     implementation "com.google.android.gms:play-services-location:$rootProject.playServicesVersion"
 
